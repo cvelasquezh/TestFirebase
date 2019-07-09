@@ -25,6 +25,7 @@ class INTDatabaseManager: INTDatabaseManagerProtocol {
         let dictionaryValues = ["name": user.name,
                                 "email": user.email,
                                 "lastname": user.lastName,
+                                "age":user.age,
                                 "birthday": user.fecNac]
         let values = [uid : dictionaryValues]
         
