@@ -59,7 +59,7 @@ class InitialViewController: UIViewController {
     
     let labelOr:UILabel = {
        let label = UILabel()
-        label.text = "Or"
+        label.text = "O"
         label.textColor = UIColor.white
         label.textAlignment = .center
         label.font = UIFont.regularINTFont(ofSize: 18)
@@ -70,6 +70,7 @@ class InitialViewController: UIViewController {
       let textfield = INTTextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.placeholder = "Email"
+        textfield.keyboardType = UIKeyboardType.emailAddress
       return textfield
     }()
     
