@@ -24,7 +24,7 @@ extension UIColor {
     }
     
     class func INTorange() -> UIColor {
-        return colorToPercent(red: 255, green: 138, blue: 0)
+        return colorToPercent(red: 253, green: 92, blue: 105)
     }
     
     class func INTpurple() -> UIColor {

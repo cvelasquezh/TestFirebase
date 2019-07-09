@@ -20,39 +20,37 @@ class CreateUserViewController: UIViewController {
         return dateFormatter
     }()
     
+    let imageBackground :UIImageView = {
+        let imageview = UIImageView()
+        imageview.image = UIImage(named: "background")
+      imageview.contentMode = UIViewContentMode.scaleAspectFill
+      return imageview
+    }()
+    
     let hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .light)
         hud.interactionType = .blockAllTouches
         return hud
     }()
     
-    let txtName:UITextField = {
-        let textField = UITextField()
+    let txtName:INTTextField = {
+        let textField = INTTextField()
         textField.borderStyle = UITextBorderStyle.roundedRect
-        textField.textColor = UIColor.black
-        textField.layer.borderColor = UIColor.black.cgColor
-        textField.keyboardType = UIKeyboardType.alphabet
-        
         textField.placeholder = "Ingrese Nombre"
         return textField
     }()
     
-    let txtLastName:UITextField = {
-        let textField = UITextField()
+    let txtLastName:INTTextField = {
+        let textField = INTTextField()
         textField.placeholder = "Ingrese Apellidos"
         textField.borderStyle = UITextBorderStyle.roundedRect
-        textField.textColor = UIColor.gray
-        textField.layer.borderColor = UIColor.black.cgColor
-        textField.keyboardType = UIKeyboardType.alphabet
         return textField
     }()
     
-    let txtAge:UITextField = {
-      let txtAge = UITextField()
-        txtAge.textColor = UIColor.gray
+    let txtAge:INTTextField = {
+      let txtAge = INTTextField()
         txtAge.borderStyle = UITextBorderStyle.roundedRect
         txtAge.placeholder = "Ingrese edad"
-        txtAge.layer.borderColor = UIColor.black.cgColor
         txtAge.keyboardType = UIKeyboardType.numberPad
       return txtAge
     }()
@@ -64,11 +62,10 @@ class CreateUserViewController: UIViewController {
       return datePicker
     }()
     
-    let txtBirthday:UITextField = {
-        let textField = UITextField()
+    let txtBirthday:INTTextField = {
+        let textField = INTTextField()
         textField.textColor = UIColor.gray
         textField.borderStyle = UITextBorderStyle.roundedRect
-        textField.textColor = UIColor.gray
         textField.placeholder = "Ingrese fecha de nacimiento"
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
@@ -172,8 +169,10 @@ class CreateUserViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .lightGray
         navigationItem.title = "Crear Usuario"
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.isHidden = false
         self.txtBirthday.inputView = self.datePicker
         setupViews()
     }
@@ -184,16 +183,24 @@ class CreateUserViewController: UIViewController {
         view.addSubview(txtAge)
         view.addSubview(txtBirthday)
         view.addSubview(btnCreateUser)
-        
+        view.addSubview(imageBackground)
+        view.sendSubview(toBack: imageBackground)
         txtAge.delegate = self
         
-        txtName.anchor(view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: nil, right: view.safeAreaLayoutGuide.rightAnchor, topConstant: 40, leftConstant: 20, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 50)
-        txtLastName.anchor(txtName.bottomAnchor, left: txtName.leftAnchor, bottom: nil, right: txtName.rightAnchor, topConstant: 30, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 50)
-        txtAge.anchor(txtLastName.bottomAnchor, left: txtName.leftAnchor, bottom: nil, right: txtName.rightAnchor, topConstant: 30, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 50)
+        txtName.anchor(view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor, bottom: nil, right: view.safeAreaLayoutGuide.rightAnchor, topConstant: 40, leftConstant: 20, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 40)
+        txtLastName.anchor(txtName.bottomAnchor, left: txtName.leftAnchor, bottom: nil, right: txtName.rightAnchor, topConstant: 30, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 40)
+        txtAge.anchor(txtLastName.bottomAnchor, left: txtName.leftAnchor, bottom: nil, right: txtName.rightAnchor, topConstant: 30, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 40)
         
-        txtBirthday.anchor(txtAge.bottomAnchor, left: txtName.leftAnchor, bottom: nil, right: txtName.rightAnchor, topConstant: 30, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 50)
+        txtBirthday.anchor(txtAge.bottomAnchor, left: txtName.leftAnchor, bottom: nil, right: txtName.rightAnchor, topConstant: 30, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 40)
 
         btnCreateUser.anchor(txtBirthday.bottomAnchor, left: txtName.leftAnchor, bottom: nil, right: txtName.rightAnchor, topConstant: 30, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 50)
+        
+        //imageview Backgorund
+        imageBackground.translatesAutoresizingMaskIntoConstraints = false
+        imageBackground.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        imageBackground.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        imageBackground.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        imageBackground.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
         
     }
